@@ -69,16 +69,20 @@ p { margin: 0 0 1em; }
   text-decoration: none; color: var(--ink);
   font-weight: 800; font-size: 1.05rem; line-height: 1.1;
 }
-.brand-mark {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--red); color: var(--yellow);
-  display: grid; place-items: center;
-  font-weight: 900; font-size: 1.1rem;
+.brand-logo {
+  height: 56px; width: auto;
+  display: block;
   flex-shrink: 0;
 }
 .brand-text small {
   display: block; font-weight: 500; color: var(--muted);
   font-size: .8rem; margin-top: 2px;
+}
+@media (max-width: 520px) {
+  .brand-logo { height: 44px; }
+}
+@media (max-width: 360px) {
+  .brand-logo { height: 38px; }
 }
 
 .nav-toggle {
@@ -145,24 +149,25 @@ p { margin: 0 0 1em; }
 .hero {
   background: #fff;
   color: var(--ink);
-  padding: 56px 0 64px;
+  padding: 44px 0 52px;
   position: relative;
   overflow: hidden;
 }
 .hero-inner {
   position: relative; z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  gap: 48px;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 40px;
   align-items: center;
 }
-.hero-text { max-width: 560px; }
+.hero-text { max-width: 580px; }
+.hero-visual { justify-self: end; width: 100%; max-width: 360px; }
 .hero-visual img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 6px;
-  box-shadow: 0 12px 40px rgba(0,0,0,.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,.10);
 }
 .hero .eyebrow {
   display: inline-block;
@@ -174,11 +179,16 @@ p { margin: 0 0 1em; }
 }
 .hero h1 { color: var(--ink); margin-bottom: .25em; }
 .hero h1 em { font-style: normal; color: var(--red); }
-.hero .lead { font-size: 1.2rem; opacity: .9; margin-bottom: 30px; }
+.hero .lead { font-size: 1.15rem; opacity: .9; margin-bottom: 28px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 @media (max-width: 820px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-  .hero-visual { order: -1; }
+  .hero { padding: 32px 0 40px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+  .hero-visual { order: -1; justify-self: center; max-width: 320px; }
+  .hero .lead { font-size: 1.05rem; }
+}
+@media (max-width: 520px) {
+  .hero-visual { max-width: 260px; }
 }
 
 /* ---------- Sections ---------- */
@@ -375,8 +385,64 @@ ul.clean li:last-child { border-bottom: 0; }
 .timeline li:last-child { border-left-color: transparent; }
 .timeline .year { font-weight: 800; color: var(--red); display: block; margin-bottom: 4px; }
 
+/* ---------- Ticket-Info Box ---------- */
+.ticket-info {
+  background: linear-gradient(135deg, #FFF8E1 0%, #FFF 100%);
+  border: 2px solid var(--yellow);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-bottom: 36px;
+  box-shadow: var(--shadow);
+}
+.ticket-info-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 10px;
+}
+.ticket-info-icon {
+  font-size: 1.8rem; line-height: 1;
+  background: var(--yellow); color: var(--ink);
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+}
+.ticket-info p { margin: 8px 0; }
+
+.btn-ticket {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--red); color: #fff !important;
+  padding: 8px 16px; border-radius: 8px;
+  font-weight: 700; font-size: .95rem;
+  text-decoration: none;
+  transition: background .15s;
+  margin-left: auto;
+}
+.btn-ticket:hover { background: var(--red-dark); }
+
+/* ---------- Mobile Polish ---------- */
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+  .concert { padding: 18px; }
+  .ticket-info { padding: 18px 16px; }
+  section { padding: 48px 0; }
+  .cta-band { padding: 40px 0; }
+  .btn-lg { padding: 14px 22px; font-size: 1rem; }
+  .btn { padding: 12px 20px; font-size: 1rem; }
+  .featured-pdf { padding: 18px; gap: 14px; }
+  .featured-pdf .pdf-icon { width: 48px; height: 48px; font-size: .85rem; }
+  .concert .meta { gap: 10px; }
+  .btn-ticket { width: 100%; justify-content: center; margin-left: 0; margin-top: 4px; }
+  .cta-band .container { gap: 18px; }
+  .site-footer { padding: 40px 0 24px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; align-items: center; }
+}
+@media (max-width: 420px) {
+  .nav { padding: 10px 16px; }
+  .brand-text small { font-size: .68rem; }
+  .hero { padding: 24px 0 32px; }
+}
+
 /* ---------- Print ---------- */
 @media print {
-  .site-header, .site-footer, .nav, .cta-band, .hero-actions { display: none; }
+  .site-header, .site-footer, .nav, .cta-band, .hero-actions, .ticket-info, .btn-ticket { display: none; }
   body { font-size: 14px; }
 }
